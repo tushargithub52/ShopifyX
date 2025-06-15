@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "id": "7u_lDy_UQfThBsJKWToYZ",
+      "username": "admin.master",
+      "email": "admin@master.com",
+      "password": "123456",
+      "isAdmin": true
+    },
+    {
+      "id": "RxJ0kXsTjthfVcANte6XS",
+      "username": "tushar",
+      "email": "tu@t.com",
+      "password": "123",
+      "isAdmin": true
+    },
+    {
+      "id": "UYL8Jkva29Sv_aRo7ni75",
+      "username": "snow",
+      "email": "snigdha.22b0131035@abes.ac.in",
+      "password": "23456",
+      "isAdmin": false
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "price": "109",
+      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "category": "men's clothing",
+      "image": "https://imgs.search.brave.com/IH0I-Kp8X5FlU37y2bOpY0WwJHrN80lx2f9amAGTRw0/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9vcmFuZ2UtYmFj/a3BhY2std2l0aC1i/bGFjay1zdHJhcC10/aGF0LXNheXMtd29y/ZC1pdF8xMjc1ODIz/LTIwNS5qcGc_c2Vt/dD1haXNfaXRlbXNf/Ym9vc3RlZCZ3PTc0/MA"
+    },
+    {
+      "id": "0008",
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/watch/w/g/c/-original-imahc7dczxzynmnv.jpeg?q=70",
+      "title": "Analog Watch - For Women",
+      "price": "90",
+      "category": "Watches",
+      "description": "Since its creation in 1972, French Connection has enthused a passion for design and continues to deliver timeless quality. French Connection is a design LED British brand, creating distinctive products across women's wear, menswear, accessories and home for the modern lifestyle. Dress your wrist with one of our sleek watches. The perfect everyday accessory, this French Connection watch is both practical and stylish. This piece can be worn with your favourite outfit for your casual date night. Dress bare wrists with one of our modern watches."
+    },
+    {
+      "id": "hBLvdvljoUqn_qedS8N5Z",
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/o/f/j/navo-buds-z1-number-original-imahcn9sqyp4ffgr.jpeg?q=70",
+      "title": "Number Navo Buds Z1",
+      "price": "20",
+      "category": "Headset",
+      "description": "Number Navo Buds Z1 w/ Digital Display, 72H Playtime, 4Mic ENC, Dual Pairing, Hi-Bass Bluetooth  (Autumn Mocha, True Wireless)"
+    },
+    {
+      "id": "8k3qdq2fjIvH_wGIUJQJk",
+      "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/shoe/v/c/d/7-404699-7-puma-white-dark-jasper-navy-gold-original-imahce2ucthpghfk.jpeg?q=70",
+      "title": "Puma Caven 2.0 Res Sneakers For Men",
+      "price": "50",
+      "category": "Footwear",
+      "description": "Comfortable enough for all-day wear yet sporty enough for a kickabout in the park, the PUMA Caven 2.0 Res is your stylish everyday companion. With a perforated toe for breathability and lace fastening, this sleek low boot combines the best of fashion and function so you can go from work to weekend without missing a stylish step. Details : Low boot Heel type: Flat Shoe width: Regular fit Shoe pronation: Neutral Heel-to-toe-drop: 0.0 mm Synthetic leather upper with soft leather eyestay and toe overlay Rubber outsole Stacked midsole design combined with heavy visible texture Perforation on the toe PUMA Cat logo branding Lace fastening"
+    },
+    {
+      "id": "LKdUm_-d29jLkUZOHgoXe",
+      "image": "https://img.fkcdn.com/image/xif0q/perfume/m/l/8/100-0-elite-man-perfume-with-citrus-aromatic-woody-notes-long-original-imahcjqu3agrbmvk.jpeg",
+      "title": "BELLAVITA ELITE MAN perfume with Citrus, Aromatic & Woody Notes|Long Lasting Scent| Eau de Parfum - 100 ml  (For Men)",
+      "price": "15",
+      "category": "Perfume",
+      "description": "Be a notch above the others with ELITE Man Eau de Parfum, a fragrance for those who have a taste for the finer things in life. Take on the day with top notes of lemon and lavender. Leave a long-lasting impact with vetiver, moss and tonka and exude excellence."
+    }
+  ],
+  "carts": []
+}
