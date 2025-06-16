@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { asyncdeleteproduct, asyncupdateproduct } from "../../store/actions/productActions";
-import { useForm } from 'react-hook-form';
+import {
+  asyncdeleteproduct,
+  asyncupdateproduct,
+} from "../../store/actions/productActions";
+import { useForm } from "react-hook-form";
+import { asyncupdateuser } from "../../store/actions/userActions";
+import { useState } from "react";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -10,8 +15,6 @@ const ProductDetails = () => {
 
   const user = useSelector((state) => state.userReducer.user);
   const products = useSelector((state) => state.productReducer.products);
-
-  // console.log(user, products)
 
   const product = products?.find((product) => product.id == id);
 
@@ -25,6 +28,10 @@ const ProductDetails = () => {
     },
   });
 
+  const cartItem = user.cart.find((c) => c?.product?.id === product.id);
+  const isInCart = !!cartItem;
+  const itemquantity = cartItem?.quantity || 0;
+
   const UpdateProductHandler = (updatedProduct) => {
     dispatch(asyncupdateproduct(id, updatedProduct));
   };
@@ -34,20 +41,63 @@ const ProductDetails = () => {
     navigate("/products");
   };
 
+  const Addtocarthandler = (product) => {
+    const copyuser = { ...user, cart: [...user.cart] };
+    const x = copyuser.cart.findIndex((c) => c?.product?.id === product.id);
+
+    if (x == -1) {
+      copyuser.cart.push({
+        product,
+        quantity: 1,
+      });
+    } else {
+      copyuser.cart[x] = {
+        product,
+        quantity: copyuser.cart[x].quantity + 1,
+      };
+    }
+    dispatch(asyncupdateuser(copyuser.id, copyuser));
+  };
+
+  const DecreaseQuantityHandler = (product) => {
+    const index = user.cart.findIndex((c) => c?.product?.id === product.id);
+    const copyuser = { ...user, cart: [...user.cart] };
+
+    if (copyuser.cart[index].quantity > 0) {
+      copyuser.cart[index] = {
+        ...copyuser.cart[index],
+        quantity: copyuser.cart[index].quantity - 1,
+      };
+    } else {
+      copyuser.cart.splice(index, 1);
+      setAddedtocart(true);
+    }
+    dispatch(asyncupdateuser(copyuser.id, copyuser));
+  };
+
+  const IncreaseQuantityHandler = (product) => {
+    const index = user.cart.findIndex((c) => c?.product?.id === product.id);
+    const copyuser = { ...user, cart: [...user.cart] };
+
+    copyuser.cart[index] = {
+      ...copyuser.cart[index],
+      quantity: copyuser.cart[index].quantity + 1,
+    };
+    dispatch(asyncupdateuser(copyuser.id, copyuser));
+  };
+
   return product ? (
-
-    <div className="min-h-screen bg-[#121826] text-white px-8 py-10">
-
+    <div className="min-h-screen bg-[#121826] text-white px-8 py-10 mt-15">
       {/* Back button */}
-    <div className="mb-6">
-      <button
-        onClick={() => navigate(-1)}
-        className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded shadow transition"
-      >
-        ← Back
-      </button>
-    </div>
-    
+      <div className="mb-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded shadow transition"
+        >
+          ← Back
+        </button>
+      </div>
+
       <div className="flex flex-col md:flex-row items-start gap-10">
         <img
           className="w-full md:w-1/2 h-[400px] object-contain bg-[#1f2937] rounded-lg p-4"
@@ -58,10 +108,43 @@ const ProductDetails = () => {
           <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
           <h2 className="text-2xl text-green-400 mb-2">${product.price}</h2>
           <p className="text-gray-300 mb-6">{product.description}</p>
-          <p className="text-sm text-gray-400 mb-4">Category: {product.category}</p>
-          <button className="bg-violet-600 px-6 py-2 rounded hover:bg-violet-700 transition">
-            Add to Cart
-          </button>
+          <p className="text-sm text-gray-400 mb-4">
+            Category: {product.category}
+          </p>
+          {isInCart ? (
+            <>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => DecreaseQuantityHandler(product)}
+                  className="text-lg bg-gray-700 hover:bg-gray-600 w-8 h-8 flex items-center justify-center rounded-full text-white"
+                >
+                  -
+                </button>
+                <span className="px-3 py-1 text-md rounded bg-gray-800 border border-gray-600 text-white">
+                  {itemquantity}
+                </span>
+                <button
+                  onClick={() => IncreaseQuantityHandler(product)}
+                  className="text-lg bg-gray-700 hover:bg-gray-600 w-8 h-8 flex items-center justify-center rounded-full text-white"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                onClick={() => navigate("/cart")}
+                className="mt-8 flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-600 to-purple-700 text-white font-semibold rounded-xl shadow-md hover:from-violet-500 hover:to-purple-600 transition-all duration-300"
+              >
+                🛒 View Cart Items
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => Addtocarthandler(product)}
+              className="bg-violet-600 px-6 py-2 rounded hover:bg-violet-700 transition"
+            >
+              Add to Cart
+            </button>
+          )}
         </div>
       </div>
 
@@ -104,7 +187,10 @@ const ProductDetails = () => {
               placeholder="Product Description"
             />
             <div className="col-span-full flex gap-4 mt-4">
-              <button type="submit" className="bg-blue-500 px-6 py-2 rounded hover:bg-blue-600">
+              <button
+                type="submit"
+                className="bg-blue-500 px-6 py-2 rounded hover:bg-blue-600"
+              >
                 Update Product
               </button>
               <button

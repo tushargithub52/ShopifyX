@@ -13,7 +13,7 @@ const Products = () => {
       <Link
         to={`/product/${product.id}`}
         key={product.id}
-        className="bg-[#1f2937] rounded-2xl shadow-md p-4 transition-transform transform hover:scale-105 hover:shadow-lg text-white"
+        className="bg-[#1f2937] rounded-2xl shadow-md p-4 transition-transform transform hover:scale-101 hover:shadow-lg text-white"
       >
         <img
           src={product.image}
@@ -29,7 +29,7 @@ const Products = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#121826] p-6">
+    <div className="min-h-screen bg-[#121826] p-6 mt-20">
       <h1 className="text-white text-3xl font-bold mb-6 text-center">Our Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {renderproducts}
