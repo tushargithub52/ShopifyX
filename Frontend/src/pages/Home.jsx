@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <section className="min-h-[85vh] flex items-center justify-center bg-[#121826] text-white px-6">
@@ -10,12 +12,12 @@ const Home = () => {
           <p className="text-gray-300 text-lg md:text-xl mb-8">
             Find the best products curated just for you. Fast delivery, easy checkout, and a shopping experience like never before.
           </p>
-          <a
-            href="/products"
+          <Link
+            to="/products"
             className="inline-block bg-gradient-to-r from-violet-500 to-indigo-600 hover:from-indigo-600 hover:to-violet-500 px-6 py-3 text-lg font-medium rounded-full transition-transform transform hover:scale-105 shadow-lg"
           >
             Explore Products
-          </a>
+          </Link>
         </div>
 
         {/* Image or Illustration */}

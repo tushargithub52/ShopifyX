@@ -1,6 +1,6 @@
 const PageNotFound = () => {
   return (
-    <div>PageNotFound</div>
+    <div className="w-full h-[80%] flex items-center justify-center text-8xl text-violet-400">PageNotFound</div>
   )
 }
 

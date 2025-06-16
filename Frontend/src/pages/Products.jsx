@@ -22,7 +22,7 @@ const Products = () => {
         />
         <h1 className="text-lg font-semibold">{product.title}</h1>
         <h2 className="text-sm text-gray-400 mt-1">{product.category}</h2>
-        <p className="text-sm text-gray-300 mt-2 line-clamp-3">{product.description}</p>
+        <p className="text-sm text-gray-300 mt-2 line-clamp-3">{product.description.slice(0,100)}...</p>
         <h3 className="text-xl font-bold text-violet-400 mt-4">${product.price}</h3>
       </Link>
     );

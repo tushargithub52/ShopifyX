@@ -9,16 +9,16 @@
     },
     {
       "id": "RxJ0kXsTjthfVcANte6XS",
-      "username": "tushar",
-      "email": "tu@t.com",
-      "password": "123",
+      "username": "Tushar",
+      "email": "tu@rai.com",
+      "password": "******",
       "isAdmin": true
     },
     {
-      "id": "UYL8Jkva29Sv_aRo7ni75",
+      "id": "d9xj0x1rjemf9nXrKlw_s",
       "username": "snow",
-      "email": "snigdha.22b0131035@abes.ac.in",
-      "password": "23456",
+      "email": "snow@sharma.com",
+      "password": "123456",
       "isAdmin": false
     }
   ],
