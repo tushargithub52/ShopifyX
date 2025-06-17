@@ -1,5 +1,5 @@
 import axios from "../api/axiosconfig";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -73,7 +73,15 @@ const Products = () => {
           Our Products
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
-          {renderproducts}
+          <Suspense
+            fallback={
+              <div className="flex justify-center items-center h-screen">
+                <div className="w-8 h-8 border-4 border-violet-400 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            }
+          >
+            {renderproducts}
+          </Suspense>
         </div>
       </div>
     </InfiniteScroll>
