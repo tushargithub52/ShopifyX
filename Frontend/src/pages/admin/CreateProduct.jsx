@@ -33,7 +33,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[85vh] bg-[#0f172a] px-4">
+    <div className="flex items-center justify-center min-h-[85vh] bg-[#0f172a] px-4 mt-10 py-10">
       <form
         onSubmit={handleSubmit(createProducthandler, onerror)}
         className="w-full max-w-xl p-8 rounded-2xl shadow-2xl bg-[#1e293b] border border-slate-700 text-white"

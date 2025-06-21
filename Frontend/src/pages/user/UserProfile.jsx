@@ -25,7 +25,7 @@ const UserProfile = () => {
       reset({
         username: user.username || "",
         email: user.email || "",
-        password: "******", // never prefill real password
+        password: "", //empty, otherwise will be updated hard-coded value
       });
     }
   }, [user, reset]);
@@ -46,7 +46,7 @@ const UserProfile = () => {
   if (!user) return <p className="text-white text-center mt-10">Loading...</p>;
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white px-6 py-10 flex flex-col md:flex-row gap-8 md:gap-16 items-start justify-center">
+    <div className="mt-15 min-h-screen bg-[#0f172a] text-white px-6 py-10 flex flex-col md:flex-row gap-8 md:gap-16 items-start justify-center">
       {/* Left - Profile Card */}
       <div className="w-full md:w-1/3 bg-[#1e293b] rounded-2xl shadow-lg p-6 border border-slate-700 text-center">
         <div className="flex justify-center mb-4">

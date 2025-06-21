@@ -6,7 +6,6 @@ import {
 } from "../../store/actions/productActions";
 import { useForm } from "react-hook-form";
 import { asyncupdateuser } from "../../store/actions/userActions";
-import { useState } from "react";
 
 const ProductDetails = () => {
   const { id } = useParams();

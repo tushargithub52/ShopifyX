@@ -9,17 +9,12 @@ import { asynccurrentuser } from "./store/actions/userActions.jsx"
 const App = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.userReducer);
-  const { products } = useSelector(state => state.productReducer);
 
 
   useEffect(() => {
-    dispatch(asyncloadproducts());
     !user && dispatch(asynccurrentuser());
   }, [user])
   
-  useEffect(() => {
-    products.length == 0 && dispatch(asyncloadproducts());
-  }, [products])
 
   return (
     <>

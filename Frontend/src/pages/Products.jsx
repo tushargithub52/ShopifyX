@@ -1,90 +1,110 @@
-import axios from "../api/axiosconfig";
 import { Suspense, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+import useInfiniteProducts from "../utils/useInfiniteProducts";
+import { Filter, Search } from "lucide-react";
+import ProductTemplate from "../components/ProductTemplate";
+import { loadlazyproduct, loadproduct } from "../store/reducers/productSlice";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [hasmore, setHasmore] = useState(true);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
-  const fetchmoreproducts = async () => {
-    try {
-      const { data } = await axios.get(
-        `/products?_start=${products.length}&_limit=6`
+  const { products, hasmore, setHasmore, fetchmoreproducts } = useInfiniteProducts();
+
+  const filteredProducts = products.filter((product) => {
+      return (
+        (product.category === category || category === "") &&
+        (product.title.toLowerCase().includes(search.toLowerCase()) ||
+          search === "")
       );
-
-      if (data.length === 0) {
-        setHasmore(false);
-      } else {
-        setProducts([...products, ...data]);
-      }
-    } catch (error) {
-      console.log("Fetch error: ", error);
-      setHasmore(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchmoreproducts();
-  }, []);
-
-  const renderproducts = products.map((product) => {
-    return (
-      <Link
-        to={`/product/${product.id}`}
-        key={product.id}
-        className="bg-[#1f2937] rounded-2xl shadow-md p-4 transition-transform transform hover:scale-101 hover:shadow-lg text-white"
-      >
-        <img
-          src={product.image}
-          alt={product.title}
-          className="h-48 w-full object-contain mb-4 rounded-lg bg-[#111827] p-2"
-        />
-        <h1 className="text-lg font-semibold">{product.title}</h1>
-        <h2 className="text-sm text-gray-400 mt-1">{product.category}</h2>
-        <p className="text-sm text-gray-300 mt-2 line-clamp-3">
-          {product.description.slice(0, 100)}...
-        </p>
-        <h3 className="text-xl font-bold text-violet-400 mt-4">
-          ${product.price}
-        </h3>
-      </Link>
-    );
-  });
+    });
 
   return (
-    <InfiniteScroll
-      dataLength={products.length}
-      next={fetchmoreproducts}
-      hasMore={hasmore}
-      loader={
-        <div className="flex justify-center items-center py-6">
-          <div className="w-8 h-8 border-4 border-violet-400 border-t-transparent rounded-full animate-spin"></div>
+    <>
+      <form className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-20 px-5">
+        <div className="relative w-full sm:w-1/2">
+          <Search
+            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+            size={20}
+          />
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#1f2937] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500"
+          />
         </div>
-      }
-      endMessage={
-        <p style={{ textAlign: "center" }}>
-          <b>No more products...</b>
-        </p>
-      }
-    >
-      <div className="min-h-screen bg-[#121826] p-6 mt-20">
-        <h1 className="text-white text-3xl font-bold mb-6 text-center">
-          Our Products
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
-          <Suspense
-            fallback={
-              <div className="flex justify-center items-center h-screen">
-                <div className="w-8 h-8 border-4 border-violet-400 border-t-transparent rounded-full animate-spin"></div>
-              </div>
-            }
+
+        <div className="relative w-full sm:w-1/4">
+          <Filter
+            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400"
+            size={20}
+          />
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#1f2937] text-white appearance-none focus:outline-none focus:ring-2 focus:ring-violet-500"
           >
-            {renderproducts}
-          </Suspense>
+            <option value="">All Categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="men's clothing">Men's clothing</option>
+            <option value="women's clothing">Women's clothing</option>
+            <option value="Watches">Watches</option>
+            <option value="Headset">Headset</option>
+            <option value="Footwear">Footwear</option>
+            <option value="Perfume">Perfume</option>
+            <option value="jewelery">Jewelery</option>
+          </select>
         </div>
-      </div>
-    </InfiniteScroll>
+        <button
+          type="button"
+          onClick={() => {
+            setSearch("");
+            setCategory("");
+            setHasmore(true)
+          }}
+          className="bg-violet-500 hover:bg-violet-600 transition-colors text-white px-6 py-2 rounded-lg font-medium"
+        >
+          Reset
+        </button>
+      </form>
+      <InfiniteScroll
+        dataLength={products.length}
+        next={fetchmoreproducts}
+        hasMore={hasmore}
+        loader={
+          <div className="flex justify-center items-center py-6">
+            <div className="w-8 h-8 border-4 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        }
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>No more products...</b>
+          </p>
+        }
+      >
+        <div className=" bg-[#121826] p-6">
+          <h1 className="text-white text-3xl font-bold mb-6 text-center">
+            Our Products
+          </h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-10">
+            {filteredProducts.map((product, idx) => (
+              <Suspense
+                key={idx}
+                fallback={
+                  <div className="flex justify-center items-center h-screen">
+                    <div className="w-8 h-8 border-4 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                }
+              >
+                <ProductTemplate product={product} />
+              </Suspense>
+            ))}
+          </div>
+        </div>
+      </InfiniteScroll>
+    </>
   );
 };
 
