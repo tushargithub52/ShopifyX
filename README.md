@@ -67,4 +67,3 @@ ShopifyX/
 │   ├── utils/
 │   ├── App.js
 │   └── main.jsx           
-└── README.md
