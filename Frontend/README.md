@@ -1,12 +1,70 @@
-# React + Vite
+# 📦 ShopifyX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern e-commerce platform built with **React.js** (frontend) and **JSON Server** (fake backend API) to simulate a real-world shopping experience. This app supports both **Admin** and **User** roles with full authentication and authorization features.
 
-Currently, two official plugins are available:
+🚀 **Live Demo**: [ShopifyX](https://shopify-x-xi.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React.js, Redux, React Router, Tailwind CSS  
+- **Backend**: JSON Server (Fake API)  
+- **Additional Libraries**:  
+  - `react-hook-form` – form validation  
+  - `react-infinite-scroll-component` – pagination  
+  - `react-toastify` – notifications  
+  - `axios` – HTTP requests  
+
+---
+
+## 👥 User Roles
+
+### 👤 Normal User:
+- Register/Login
+- View all products
+- Search & filter products
+- View product details
+- Add products to cart
+- View & manage cart
+- Edit profile (name, email, password)
+- Delete account
+- Logout
+
+### 👨‍💼 Admin:
+- All user privileges
+- Add new products
+- Edit existing products
+- Delete products
+
+---
+
+## 🔄 Key Features
+
+- 🛒 Add to Cart  
+- 🔍 Search & Filter Products  
+- 📜 Infinite Scroll (Pagination)  
+- 🧾 User Profile Management  
+- 🔐 Protected Routes  
+- 👨‍💼 Admin Dashboard  
+- ⚡ Lazy Loading for performance  
+- ✅ Form validation with feedback  
+
+---
+
+## 📁 Project Structure
+
+```bash
+ShopifyX/
+│
+├── public/
+├── src/
+│   ├── api/
+│   ├── components/
+│   ├── pages/
+│   ├── routes/
+│   ├── store/
+│   ├── utils/
+│   ├── App.js
+│   └── main.jsx           
+└── README.md
