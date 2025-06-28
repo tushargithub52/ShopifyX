@@ -4,6 +4,7 @@ import { asynclogoutuser } from "../store/actions/userActions";
 import { useState, useEffect } from "react";
 import { Menu, X, User, ShoppingCart } from "lucide-react";
 
+
 const Nav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Nav = () => {
   // Scroll Direction Visibility Logic
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +60,7 @@ const Nav = () => {
           ? isMobile
             ? "text-amber-300"
             : "text-violet-400 border-b-2 border-violet-400"
-          : "text-white"} hover:text-violet-400 transition-all duration-200`
+          : "text-white"} hover:text-violet-400 btns`
       }
     >
       {item.label}
@@ -79,7 +81,7 @@ const Nav = () => {
           isMobile
             ? "text-white hover:text-red-400 text-left"
             : "text-white bg-red-600 hover:opacity-80 px-3 py-1 rounded-lg"
-        } transition-all duration-200`}
+        } btns`}
       >
         {item.label}
       </button>
@@ -87,12 +89,12 @@ const Nav = () => {
 
   return (
     <nav
-      className={`bg-[#121826] text-white px-6 py-4 shadow-sm shadow-[#3f3f40] fixed top-0 left-0 right-0 z-50 transform transition-transform duration-300 ${
+      className={`bg-[#121826] text-white px-6 py-6 shadow-sm shadow-[#3f3f40] fixed top-0 left-0 right-0 z-50 transform transition-transform duration-300 ${
         showNavbar ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="text-2xl font-bold text-violet-400">ShopifyX</div>
+        <div className="text-2xl font-bold text-violet-400 logo">ShopifyX</div>
 
         {/* Desktop */}
         <div className="hidden md:flex gap-8 items-center text-lg">
@@ -102,9 +104,9 @@ const Nav = () => {
             <button
               onClick={() => navigate("/cart")}
               title="Cart"
-              className="hover:invert active:scale-85 text-gray-950 transition duration-200 bg-gray-100 rounded-[50%] p-1 cursor-pointer"
+              className="hover:invert active:scale-85 text-gray-950 btns bg-gray-100 rounded-[50%] p-1 cursor-pointer"
             >
-              <ShoppingCart size={26} />
+              <ShoppingCart size={24} />
             </button>
           )}
 
@@ -112,9 +114,9 @@ const Nav = () => {
             <button
               onClick={() => navigate("/user-profile")}
               title="Profile"
-              className="hover:invert active:scale-85 text-gray-950 transition duration-200 bg-gray-100 rounded-[50%] p-1 cursor-pointer"
+              className="hover:invert active:scale-85 text-gray-950 btns bg-gray-100 rounded-[50%] p-1 cursor-pointer"
             >
-              <User size={26} />
+              <User size={24} />
             </button>
           )}
 

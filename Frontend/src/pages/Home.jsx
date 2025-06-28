@@ -1,11 +1,23 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+
+  useGSAP(()=>{
+    var tl = gsap.timeline()
+    tl.from(".elem",{
+      // y:-1000,
+      duration:1,
+      scale:0,
+    });
+  })
+
   return (
     <section className="min-h-[85vh] flex items-center justify-center bg-[#121826] text-white px-6 mt-15 py-10">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
         {/* Text Section */}
-        <div className="flex-1">
+        <div className="flex-1 elem">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
             Discover the <span className="text-violet-400">Future</span> of Shopping
           </h1>
@@ -21,7 +33,7 @@ const Home = () => {
         </div>
 
         {/* Image or Illustration */}
-        <div className="flex-1">
+        <div className="flex-1 elem">
           <img
             src="https://img.freepik.com/free-vector/online-shopping-concept-landing-page_52683-20156.jpg?semt=ais_hybrid&w=740"
             alt="Shopping Illustration"
